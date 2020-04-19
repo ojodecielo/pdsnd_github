@@ -16,4 +16,4 @@ The descriptive statistical analysis is conducted with the help of a Python scri
 * washington.csv
 
 ### Credits
-Many thanks to [Stack Overflow](https://stackoverflow.com/) and [Geeks for Geeks](https://www.geeksforgeeks.org/) for valuable input while working on this project.
+It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
