@@ -28,9 +28,9 @@ def get_filters():
             elif city_input.lower() == 'n':
                 city = 'new york city'
             elif city_input.lower() == 'w':
-                city = 'washington'  
+                city = 'washington'
             break
-        
+
     # Get user input for month (all, january, february, ... , june)
     while True:
         month_input = input('Please enter all for no month filter,\n jan for January,\n feb for February,\n mar for March,\n apr for April, \n may for May,\n jun for June: ')
@@ -42,7 +42,7 @@ def get_filters():
             elif month_input.lower() == 'jan':
                 month = 'january'
             elif month_input.lower() == 'feb':
-                month = 'february'  
+                month = 'february'
             elif month_input.lower() == 'mar':
                 month = 'march'
             elif month_input.lower() == 'apr':
@@ -64,7 +64,7 @@ def get_filters():
             elif day_input.lower() == 'mon':
                 day = 'monday'
             elif day_input.lower() == 'tue':
-                day = 'tuesday'  
+                day = 'tuesday'
             elif day_input.lower() == 'wed':
                 day = 'wednesday'
             elif day_input.lower() == 'thu':
@@ -77,7 +77,7 @@ def get_filters():
                 day = 'sunday'
             break
     print('\nYour filters are:')
-    print('City:', city.title(), ', Month:', month.capitalize(), ', Day of Week:', day.capitalize())  
+    print('City:', city.title(), ', Month:', month.capitalize(), ', Day of Week:', day.capitalize())
     print('-'*40)
     return city, month, day
 
@@ -112,7 +112,7 @@ def load_data(city, month, day):
     # filter by day of week if applicable
     if day != 'all':
         df = df[df['day_of_week'] == day.title()]
-    
+
     # ask if user wants to see the first rows of data frame
     user_query = input('Would you like to see the first few rows of the data frame? Then type yes: ')
     if user_query == 'yes':
@@ -133,14 +133,14 @@ def time_stats(df):
         print('Most Common Month:', months[popular_month - 1].capitalize())
     else:
         print('The data is already filtered by month:', month.capitalize())
-    
+
     # Display the most common day of week, if no filter set
     if day == 'all':
         popular_dow = df['day_of_week'].mode()[0]
         print('Most Common Day of Week:', popular_dow)
     else:
-        print('The data is already filtered by day of week:', day.capitalize())    
-    
+        print('The data is already filtered by day of week:', day.capitalize())
+
     # Display the most common start hour
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['hour'] = df['Start Time'].dt.hour
@@ -198,7 +198,7 @@ def trip_duration_stats(df):
     total_travel_time = df['Trip Duration'].sum()
     converted_total_time = convert_time(total_travel_time)
     print('Total Travel Time:', total_travel_time, 'seconds OR {} days, {} hours, {} minutes, and {} seconds'.format(*converted_total_time))
-    
+
     # Display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     converted_mean_time = convert_time(mean_travel_time)
@@ -210,7 +210,7 @@ def trip_duration_stats(df):
 
 def user_stats(df):
     """Displays statistics on bikeshare users."""
-    
+
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
@@ -224,7 +224,7 @@ def user_stats(df):
         print('\nGender distribution is:')
         gender_count = df['Gender'].value_counts()
         print(gender_count)
-        
+
         # Display earliest, most recent, and most common year of birth
         birth_earliest = df['Birth Year'].min()
         print('\nEarliest year of birth:', int(birth_earliest))
@@ -234,7 +234,7 @@ def user_stats(df):
         print('Most common year of birth:', int(popular_birth_year))
     else:
         print('\nNo data about gender and birth year available!')
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -256,4 +256,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
